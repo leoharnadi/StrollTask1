@@ -1,0 +1,109 @@
+//
+//  TurnView.swift
+//  Stroll Task 1
+//
+//  Created by Leo Harnadi on 23/09/25.
+//
+
+import SwiftUI
+
+struct TurnView: View {
+    var offset: CGFloat = 0.17
+    var progress: CGFloat = 0.90
+    
+    
+    var body: some View {
+        VStack(spacing:0) {
+            HStack {
+                VStack(alignment: .leading, spacing: 6) {
+                    HStack(spacing: 10) {
+                        Text("Your Turn")
+                            .foregroundColor(.white)
+                            .font(MyFont.title)
+                        
+                        Circle()
+                            .fill(Color("Purple"))
+                            .frame(width: 16, height: 16)
+                            .overlay(
+                                Text("7")
+                                    .font(MyFont.caption)
+                                    .foregroundColor(.black)
+                                    .fontWeight(.medium)
+                            )
+                            .padding(2)
+                    }
+                    
+                    Text("Make your move, they are waiting 🎵")
+                        .font(MyFont.italicBody)
+                        .italic()
+                        .foregroundColor(Color("LightGray"))
+                }
+                
+                Spacer()
+                
+                ZStack {
+                    Circle()
+                        .fill(Color("BlurBlue").opacity(0.25))
+                        .frame(width: 55, height: 55)
+                        .blur(radius: 25)
+                        .blendMode(.screen)
+                        .rotationEffect(.degrees(22.9))
+                    ZStack {
+                        
+                        ZStack {
+                            Circle()
+                                .trim(from: offset, to: 1 - offset)
+                                .stroke(style: StrokeStyle(lineWidth: 4, lineCap: .round))
+                                .foregroundColor(Color("BarGray"))
+                                .rotationEffect(.degrees(90))
+                            
+                            Circle()
+                                .trim(from: offset, to: offset + (1 - 2 * offset) * progress)
+                                .stroke(style: StrokeStyle(lineWidth: 4, lineCap: .round))
+                                .foregroundColor(Color("ProgressGreen"))
+                                .rotationEffect(.degrees(90))
+                        }
+                        .frame(width: 45, height: 45)
+                        
+                        VStack(spacing: -7) {
+                            Image("profile2")
+                                .resizable()
+                                .frame(width: 35, height: 35)
+                                .clipShape(Circle())
+                            
+                            Text(String(format: "%.0f", progress * 100))
+                                .font(MyFont.caption)
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 13.5)
+                                .padding(.vertical, 2.7)
+                                .background(
+                                    Color("DarkNavy")
+                                        .cornerRadius(22.5)
+                                )
+                        }.padding(.top,13)
+                    }
+                }
+            }
+            .padding(.trailing, 15)
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack(spacing:15) {
+                    ForEach(Turns, id: \.name) { card in
+                        TurnCardView(card: card)
+                    }
+                    Image("moreTurnCards")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 205)
+                        .clipped()
+                    
+                }
+            }.frame(height: 205).padding(.top, 15)
+        }
+        .padding(.leading,17)
+    }
+    
+}
+
+#Preview {
+    TurnView()
+}

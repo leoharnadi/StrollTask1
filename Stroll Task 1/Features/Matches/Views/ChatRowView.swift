@@ -26,13 +26,16 @@ struct ChatRowView: View {
                     
                     switch chat.status {
                     case .newChat:
-                        Text("New chat")
-                            .font(MyFont.chatStatus)
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 8)
+                        HStack(spacing:6){
+                            Image("bulletPoint")
+                            
+                            Text("New chat")
+                                .font(MyFont.chatStatus)
+                                .foregroundColor(.white)
+                                }.padding(.horizontal, 8)
                             .padding(.vertical, 4)
                             .background(Color("DarkPurple"))
-                            .cornerRadius(12)
+                        .cornerRadius(12)
 
                     case .yourMove, .unread:
                         Text("Your move")

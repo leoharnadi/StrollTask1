@@ -76,19 +76,19 @@ struct ChatRowView: View {
                 case .newChat:
                     Text("★")
                         .font(MyFont.chatStatus)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
-                        .background(Color("DarkPurple"))
+                        .background(Color("BlurBlue"))
                         .cornerRadius(12)
 
                 case  .unread(let count):
                     Text(String(count))
                         .font(MyFont.chatStatus)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
-                        .background(Color("DarkPurple"))
+                        .background(Color("BlurBlue"))
                         .cornerRadius(12)
 
                 case .none, .yourMove:

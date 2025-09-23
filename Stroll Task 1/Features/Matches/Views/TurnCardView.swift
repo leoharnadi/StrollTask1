@@ -92,7 +92,7 @@ struct TurnCardView: View {
                 if card.isHidden {
                     VStack {
                         Spacer()
-                        Text("Tap to Answer")
+                        Text("Tap to answer")
                             .font(MyFont.captionSubtitle)
                             .fontWeight(.bold)
                             .foregroundColor(.white)

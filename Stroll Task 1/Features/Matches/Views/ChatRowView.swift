@@ -55,7 +55,7 @@ struct ChatRowView: View {
                 case .text(let text):
                     Text(text)
                         .font(chat.status == .none ? MyFont.chatRead : MyFont.chatUnread)
-                        .foregroundColor(.white)
+                        .foregroundColor(chat.status == .none ? Color("ReadGray") : .white)
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
                     
@@ -78,20 +78,20 @@ struct ChatRowView: View {
                 switch chat.status {
                 case .newChat:
                     Text("★")
-                        .font(MyFont.chatStatus)
+                        .font(MyFont.caption)
                         .foregroundColor(.black)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(Color("BlurBlue"))
+                        .padding(.horizontal, 5)
+                        .padding(.vertical, 2)
+                        .background(Color("Purple"))
                         .cornerRadius(12)
 
                 case  .unread(let count):
                     Text(String(count))
-                        .font(MyFont.chatStatus)
+                        .font(MyFont.caption)
                         .foregroundColor(.black)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(Color("BlurBlue"))
+                        .padding(.horizontal, 5)
+                        .padding(.vertical, 2)
+                        .background(Color("Purple"))
                         .cornerRadius(12)
 
                 case .none, .yourMove:
@@ -101,11 +101,12 @@ struct ChatRowView: View {
             }
             
         }
-        .padding(.vertical, 8.5)
+        .padding(.vertical, 10.5)
         .padding(.horizontal, 15)
         Divider()
             .frame(height: 0.5)
             .background(Color("DividerGray"))
-            .padding(.horizontal, 16)
+            .padding(.trailing, 16)
+            .padding(.leading, 80)
     }
 }

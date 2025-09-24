@@ -18,7 +18,7 @@ struct ChatView: View {
                         selectedTab = "Chats"
                     }
                     .font(MyFont.title)
-                    .foregroundColor(selectedTab == "Chats" ? .white : Color("LightGray"))
+                    .foregroundColor(selectedTab == "Chats" ? .white : Color("UnselectedGray"))
                     .padding(.vertical, 2)
                     .overlay(
                         RoundedRectangle(cornerRadius: 4)
@@ -33,7 +33,7 @@ struct ChatView: View {
                         selectedTab = "Pending"
                     }
                     .font(MyFont.title)
-                    .foregroundColor(selectedTab == "Pending" ? .white : Color("LightGray"))
+                    .foregroundColor(selectedTab == "Pending" ? .white : Color("UnselectedGray"))
                     .padding(.vertical, 2)
                     .overlay(
                         RoundedRectangle(cornerRadius: 4)
@@ -55,6 +55,7 @@ struct ChatView: View {
                 }
             }
             .padding(.leading, 20)
+            .padding(.bottom, 4)
             
             ScrollView {
                 LazyVStack(spacing: 1) {
@@ -63,12 +64,11 @@ struct ChatView: View {
                             .background(Color.black.opacity(0.1))
                     }
                 }
-            }
-            .mask(
+            }.mask(
                 LinearGradient(
                     gradient: Gradient(stops: [
-                        .init(color: Color.black, location: 0.0),
-                        .init(color: Color.black.opacity(0.7), location: 0.0005),
+                        .init(color: Color.clear, location: 0.0),
+                        .init(color: Color.black, location: 0.3),
                         .init(color: Color.black, location: 1.0)
                     ]),
                     startPoint: .bottom,
@@ -79,17 +79,7 @@ struct ChatView: View {
         }
         .padding(.top, 10)
         .background(Color.black)
-        .mask(
-            LinearGradient(
-                gradient: Gradient(stops: [
-                    .init(color: Color.black, location: 0.0),
-                    .init(color: Color.black.opacity(0.8), location: 0.0005),
-                    .init(color: Color.black, location: 1.0)
-                ]),
-                startPoint: .bottom,
-                endPoint: .top
-            )
-        )
+        
     }
 }
 

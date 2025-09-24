@@ -8,8 +8,32 @@
 import SwiftUI
 
 struct TurnView: View {
-    var offset: CGFloat = 0.17
-    var progress: CGFloat = 0.90
+    let offset: CGFloat = 0.17
+    let progress: CGFloat = 0.9
+    
+    var calculatedProgress: CGFloat {
+        return offset + (1 - 2 * offset) * progress
+    }
+    
+    let progressGradient = AngularGradient(
+        gradient: Gradient(stops: [
+            .init(color: .clear, location: 0.02),
+            .init(color:  Color("ProgressGreen1"), location: 0.66),
+            .init(color: Color("ProgressGreen2"), location: 0.77)
+        ]),
+        center: .center
+    )
+    
+    let stopperGradient = LinearGradient(
+        gradient: Gradient(stops: [
+            .init(color: Color("Purple").opacity(0.0), location: 0.0),
+            .init(color: Color("Purple").opacity(1.0), location: 0.2),
+            .init(color: Color("Purple").opacity(1.0), location: 0.8),
+            .init(color: Color("Purple").opacity(0.0), location: 1.0)
+        ]),
+        startPoint: .leading,
+        endPoint: .trailing
+    )
     
     
     var body: some View {
@@ -43,7 +67,7 @@ struct TurnView: View {
                 
                 ZStack {
                     Circle()
-                        .fill(Color("BlurBlue").opacity(0.25))
+                        .fill(Color("Purple").opacity(0.25))
                         .frame(width: 55, height: 55)
                         .blur(radius: 25)
                         .blendMode(.screen)
@@ -51,6 +75,7 @@ struct TurnView: View {
                     ZStack {
                         
                         ZStack {
+                            
                             Circle()
                                 .trim(from: offset, to: 1 - offset)
                                 .stroke(style: StrokeStyle(lineWidth: 4, lineCap: .round))
@@ -58,10 +83,15 @@ struct TurnView: View {
                                 .rotationEffect(.degrees(90))
                             
                             Circle()
-                                .trim(from: offset, to: offset + (1 - 2 * offset) * progress)
-                                .stroke(style: StrokeStyle(lineWidth: 4, lineCap: .round))
-                                .foregroundColor(Color("ProgressGreen"))
+                                .trim(from: offset, to: calculatedProgress)
+                                .stroke(progressGradient,style: StrokeStyle(lineWidth: 4, lineCap: .round))
                                 .rotationEffect(.degrees(90))
+                            
+                            Circle()
+                                .trim(from: calculatedProgress - 0.005, to: calculatedProgress + 0.005)
+                                .stroke(stopperGradient, style: StrokeStyle(lineWidth: 6))
+                                .rotationEffect(.degrees(90))
+                            
                         }
                         .frame(width: 45, height: 45)
                         

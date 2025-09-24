@@ -82,7 +82,7 @@ struct ChatRowView: View {
                         .foregroundColor(.black)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
-                        .background(Color("BlurBlue"))
+                        .background(Color("Purple"))
                         .cornerRadius(12)
 
                 case  .unread(let count):
@@ -91,7 +91,7 @@ struct ChatRowView: View {
                         .foregroundColor(.black)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
-                        .background(Color("BlurBlue"))
+                        .background(Color("Purple"))
                         .cornerRadius(12)
 
                 case .none, .yourMove:

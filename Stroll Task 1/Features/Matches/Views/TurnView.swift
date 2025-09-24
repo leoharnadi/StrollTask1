@@ -46,7 +46,7 @@ struct TurnView: View {
                             .font(MyFont.title)
                         
                         Circle()
-                            .fill(Color("Purple"))
+                            .fill(Color("TurnPurple"))
                             .frame(width: 16, height: 16)
                             .overlay(
                                 Text("7")

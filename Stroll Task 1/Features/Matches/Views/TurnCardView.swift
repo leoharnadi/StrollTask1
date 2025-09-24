@@ -46,9 +46,23 @@ struct TurnCardView: View {
                                     
                                     Spacer()
                                     
-                                    Image("timer")
-                                        .background(Color.black)
-                                        .cornerRadius(10)
+                                    ZStack {
+                                        Circle()
+                                            .fill(.black)
+                                            .shadow(
+                                                color: .black,
+                                                radius: 8,
+                                                x: 0,
+                                                y: 0
+                                            )
+                                            .frame(width: 23, height: 23)
+                                        Circle()
+                                            .fill(Color("TimerGray"))
+                                            .frame(width: 23, height: 23)
+                                        Image("timer")
+                                            .cornerRadius(10)
+                                    }
+                                    
                                 }
                             } else {
                                 HStack {

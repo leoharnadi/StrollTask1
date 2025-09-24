@@ -18,7 +18,7 @@ struct ChatView: View {
                         selectedTab = "Chats"
                     }
                     .font(MyFont.title)
-                    .foregroundColor(selectedTab == "Chats" ? .white : Color("LightGray"))
+                    .foregroundColor(selectedTab == "Chats" ? .white : Color("UnselectedGray"))
                     .padding(.vertical, 2)
                     .overlay(
                         RoundedRectangle(cornerRadius: 4)
@@ -33,7 +33,7 @@ struct ChatView: View {
                         selectedTab = "Pending"
                     }
                     .font(MyFont.title)
-                    .foregroundColor(selectedTab == "Pending" ? .white : Color("LightGray"))
+                    .foregroundColor(selectedTab == "Pending" ? .white : Color("UnselectedGray"))
                     .padding(.vertical, 2)
                     .overlay(
                         RoundedRectangle(cornerRadius: 4)
@@ -55,6 +55,7 @@ struct ChatView: View {
                 }
             }
             .padding(.leading, 20)
+            .padding(.bottom, 4)
             
             ScrollView {
                 LazyVStack(spacing: 1) {

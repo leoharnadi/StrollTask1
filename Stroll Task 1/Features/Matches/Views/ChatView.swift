@@ -64,12 +64,11 @@ struct ChatView: View {
                             .background(Color.black.opacity(0.1))
                     }
                 }
-            }
-            .mask(
+            }.mask(
                 LinearGradient(
                     gradient: Gradient(stops: [
-                        .init(color: Color.black, location: 0.0),
-                        .init(color: Color.black.opacity(0.7), location: 0.0005),
+                        .init(color: Color.clear, location: 0.0),
+                        .init(color: Color.black, location: 0.3),
                         .init(color: Color.black, location: 1.0)
                     ]),
                     startPoint: .bottom,
@@ -80,17 +79,7 @@ struct ChatView: View {
         }
         .padding(.top, 10)
         .background(Color.black)
-        .mask(
-            LinearGradient(
-                gradient: Gradient(stops: [
-                    .init(color: Color.black, location: 0.0),
-                    .init(color: Color.black.opacity(0.8), location: 0.0005),
-                    .init(color: Color.black, location: 1.0)
-                ]),
-                startPoint: .bottom,
-                endPoint: .top
-            )
-        )
+        
     }
 }
 
